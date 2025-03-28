@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:padding="24dp"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/textTituloResultado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resultado do Churrasco"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorTextPrimary"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Descrição -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confira as quantidades ideais para o seu churrasco:"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Card Total -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:textColor="@color/colorTextPrimary"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/textTotalKg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total: 0.0 kg"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorTextPrimary" />
+        </LinearLayout>
+
+        <!-- Card Detalhes -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/textBovino"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bovino: 0.0 kg"
+                android:textSize="18sp"
+                android:textColor="@color/colorTextPrimary"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/textFrango"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Frango: 0.0 kg"
+                android:textSize="18sp"
+                android:textColor="@color/colorTextPrimary"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/textLinguica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Liguiça: 0.0 kg"
+                android:textColor="@color/colorTextPrimary"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/textPorco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Porco: 0.0 kg"
+                android:textColor="@color/colorTextPrimary" />
+        </LinearLayout>
+
+        <!-- Botão novo cálculo -->
+        <Button
+            android:id="@+id/buttonNovoCalculo"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Fazer novo cálculo"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/colorPrimary"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"
+            android:padding="12dp" />
+
+        <!-- Botão compartilhar -->
+        <Button
+            android:id="@+id/buttonCompartilhar"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Compartilhar"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/colorPrimary"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"
+            android:padding="12dp" />
+
+        <!-- Botão calcular rateio -->
+        <Button
+            android:id="@+id/buttonRateio"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Calcular Rateio"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/colorPrimary"
+            android:textSize="16sp"
+            android:padding="12dp" />
+
+    </LinearLayout>
+</ScrollView>

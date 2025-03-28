@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="colorPrimary">#FF4433</color> <!-- Vermelho do logo -->
+    <color name="colorBackground">#2D333A</color> <!-- Fundo escuro do app -->
+    <color name="colorTextPrimary">#FFFFFF</color> <!-- Texto branco -->
+    <color name="colorPrimaryDark">#0D0C0C</color> <!-- Texto branco -->
+
+
+
+</resources>

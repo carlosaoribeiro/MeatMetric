@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.carlosribeiro.meatmetric">
+
+    <!-- Permissões -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <!-- Se estiver com targetSdkVersion 33+ substitua por: -->
+    <!-- <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" /> -->
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_meatmetric_logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MeatMetric"
+        tools:targetApi="31">
+
+        <!-- Splash -->
+        <activity
+            android:name=".ui.SplashActivity"
+            android:theme="@style/Theme.MeatMetric.NoActionBar"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Demais telas -->
+        <activity android:name=".ui.LoginActivity"
+            android:theme="@style/Theme.MeatMetric.NoActionBar" />
+        <activity android:name=".ui.CadastroActivity"
+            android:theme="@style/Theme.MeatMetric.NoActionBar" />
+        <activity android:name=".ui.recuperar.RecuperarSenhaActivity"
+            android:theme="@style/Theme.MeatMetric.NoActionBar" />
+        <activity android:name=".ui.ParametrosActivity"
+            android:theme="@style/Theme.MeatMetric.NoActionBar" />
+        <activity android:name=".ui.ResultadoActivity"
+            android:theme="@style/Theme.MeatMetric.NoActionBar" />
+
+        <!-- Nova tela de rateio -->
+        <activity android:name=".ui.RateioActivity"
+            android:theme="@style/Theme.MeatMetric.NoActionBar"
+            android:exported="false" />
+
+    </application>
+</manifest>
