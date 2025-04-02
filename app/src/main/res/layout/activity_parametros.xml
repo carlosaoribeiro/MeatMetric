@@ -1,63 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/colorBackground"
-    android:padding="32dp"
-    android:gravity="center_horizontal">
+    android:background="#2D333A"
+    tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textTitulo"
+        android:id="@+id/titlePrincipal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Planeje seu Churrasco"
-        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/colorTextPrimary"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="24dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="80dp"/>
 
-    <RadioGroup
-        android:id="@+id/radioGroupTipo"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardOpcoes"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="24dp">
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/titlePrincipal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="24dp"
+        app:cardBackgroundColor="#2D333A">
 
-        <RadioButton
-            android:id="@+id/radioSomenteCarnes"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Somente carnes"
-            android:textColor="@color/colorTextPrimary" />
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:spacing="4dp">
 
-        <RadioButton
-            android:id="@+id/radioCarnesGuarnicoes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColorLink="@color/colorTextPrimary"
-            android:text="Carnes e guarnições"
-            android:textColor="@color/colorTextPrimary" />
-    </RadioGroup>
+            <RadioGroup
+                android:id="@+id/radioGroupTipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/radioSomenteCarnes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🍖 Somente carnes"
+                    android:textColor="@android:color/white"
+                    android:buttonTint="#E53935"
+                    android:layout_marginBottom="8dp" />
+
+                <RadioButton
+                    android:id="@+id/radioCarnesGuarnicoes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🍖🥗 Carnes e guarnições"
+                    android:textColor="@android:color/white"
+                    android:buttonTint="#E53935" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <EditText
         android:id="@+id/editTextPessoas"
-        android:layout_width="250dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Número de pessoas"
+        android:hint="Quantas pessoas vão participar?"
         android:inputType="number"
-        android:background="@drawable/bg_input"
-        android:padding="16dp"
-        android:textColor="@color/black"
+        android:maxLength="3"
+        android:textColor="@android:color/white"
         android:textColorHint="#AAAAAA"
-        android:layout_marginBottom="24dp" />
+        android:background="@drawable/edittext_elevado"
+        android:padding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/cardOpcoes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="24dp"/>
+
+    <TextView
+        android:id="@+id/textHelperLimite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(Máximo 100 pessoas)"
+        android:textColor="#BBBBBB"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/editTextPessoas"
+        app:layout_constraintStart_toStartOf="@id/editTextPessoas"
+        android:layout_marginTop="4dp"/>
 
     <Button
         android:id="@+id/buttonCalcular"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Calcular"
-        style="@style/MeatMetricButton" />
-</LinearLayout>
+        android:text="Calcular Churrasco 🔢"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:background="@drawable/rounded_button"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/textHelperLimite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="24dp"/>
+
+    <Button
+        android:id="@+id/buttonPerfil"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Meu Perfil"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:background="@drawable/rounded_button"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/buttonCalcular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="24dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

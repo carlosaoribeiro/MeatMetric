@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBackground"
     android:padding="24dp"
     android:fillViewport="true">
@@ -21,7 +22,7 @@
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/colorTextPrimary"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="80dp"
             android:layout_marginBottom="12dp" />
 
         <!-- Descrição -->
@@ -34,80 +35,78 @@
             android:gravity="center"
             android:layout_marginBottom="24dp" />
 
-        <!-- Card Total -->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <!-- Card Total + Detalhes -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="309dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_card"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:textColor="@color/colorTextPrimary"
-            android:layout_marginBottom="16dp"
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/textTotalKg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total: 0.0 kg"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/colorTextPrimary" />
-        </LinearLayout>
-
-        <!-- Card Detalhes -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_card"
-            android:orientation="vertical"
-            android:padding="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="24dp"
-            android:gravity="center_horizontal">
+            app:cardBackgroundColor="@color/gray"
+            app:cardElevation="6dp">
 
-            <TextView
-                android:id="@+id/textBovino"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bovino: 0.0 kg"
-                android:textSize="18sp"
-                android:textColor="@color/colorTextPrimary"
-                android:layout_marginBottom="8dp" />
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <TextView
-                android:id="@+id/textFrango"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Frango: 0.0 kg"
-                android:textSize="18sp"
-                android:textColor="@color/colorTextPrimary"
-                android:layout_marginBottom="8dp" />
+                <TextView
+                    android:id="@+id/textTotalKg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="Total: 0.0 kg"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textLinguica"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="Liguiça: 0.0 kg"
-                android:textColor="@color/colorTextPrimary"
-                android:layout_marginBottom="8dp" />
+                <TextView
+                    android:id="@+id/textBovino"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Bovino: 0.0 kg"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/textPorco"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="Porco: 0.0 kg"
-                android:textColor="@color/colorTextPrimary" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/textFrango"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Frango: 0.0 kg"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textLinguica"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Linguiça: 0.0 kg"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textPorco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Porco: 0.0 kg"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- Botão novo cálculo -->
         <Button
             android:id="@+id/buttonNovoCalculo"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="Fazer novo cálculo"
             android:textColor="@android:color/white"
+            style="@style/MeatMetricButton"
             android:backgroundTint="@color/colorPrimary"
             android:textSize="16sp"
             android:layout_marginBottom="16dp"
@@ -116,21 +115,23 @@
         <!-- Botão compartilhar -->
         <Button
             android:id="@+id/buttonCompartilhar"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="Compartilhar"
             android:textColor="@android:color/white"
             android:backgroundTint="@color/colorPrimary"
             android:textSize="16sp"
+            style="@style/MeatMetricButton"
             android:layout_marginBottom="16dp"
             android:padding="12dp" />
 
         <!-- Botão calcular rateio -->
         <Button
             android:id="@+id/buttonRateio"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="Calcular Rateio"
+            style="@style/MeatMetricButton"
             android:textColor="@android:color/white"
             android:backgroundTint="@color/colorPrimary"
             android:textSize="16sp"

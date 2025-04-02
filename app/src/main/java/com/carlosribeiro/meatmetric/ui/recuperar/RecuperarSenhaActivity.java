@@ -10,30 +10,56 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.carlosribeiro.meatmetric.R;
+import com.carlosribeiro.meatmetric.db.AppDatabase;
 
 public class RecuperarSenhaActivity extends AppCompatActivity {
 
-    private EditText emailEditText;
-    private Button enviarButton;
+    private EditText editTextEmail, editTextNovaSenha, editTextConfirmarSenha;
+    private Button buttonRedefinirSenha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recuperar_senha);
 
-        emailEditText = findViewById(R.id.editTextEmailRecuperacao);
-        enviarButton = findViewById(R.id.buttonEnviarRecuperacao);
+        editTextEmail = findViewById(R.id.editTextEmailRecuperacao);
+        editTextNovaSenha = findViewById(R.id.editTextNovaSenha);
+        editTextConfirmarSenha = findViewById(R.id.editTextConfirmarNovaSenha);
+        buttonRedefinirSenha = findViewById(R.id.buttonRedefinirSenha);
 
-        enviarButton.setOnClickListener(v -> {
-            String email = emailEditText.getText().toString().trim();
+        buttonRedefinirSenha.setOnClickListener(v -> {
+            String email = editTextEmail.getText().toString().trim();
+            String novaSenha = editTextNovaSenha.getText().toString();
+            String confirmarSenha = editTextConfirmarSenha.getText().toString();
 
-            if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            if (!isValidEmail(email)) {
                 Toast.makeText(this, "Digite um e-mail válido", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // Aqui você poderia enviar o email (Firebase/Auth/etc.)
-            Toast.makeText(this, "Link de recuperação enviado!", Toast.LENGTH_LONG).show();
+            if (TextUtils.isEmpty(novaSenha) || TextUtils.isEmpty(confirmarSenha)) {
+                Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (!novaSenha.equals(confirmarSenha)) {
+                Toast.makeText(this, "As senhas não coincidem", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+            if (db.usuarioDao().emailJaCadastrado(email) == 0) {
+                Toast.makeText(this, "E-mail não encontrado", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            db.usuarioDao().atualizarSenha(email, novaSenha);
+            Toast.makeText(this, "Senha redefinida com sucesso!", Toast.LENGTH_SHORT).show();
+            finish();
         });
+    }
+
+    private boolean isValidEmail(String email) {
+        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
     }
 }

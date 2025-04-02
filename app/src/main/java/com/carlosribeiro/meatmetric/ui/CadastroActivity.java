@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,6 +11,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.carlosribeiro.meatmetric.R;
+import com.carlosribeiro.meatmetric.db.AppDatabase;
+import com.carlosribeiro.meatmetric.model.Usuario;
 
 public class CadastroActivity extends AppCompatActivity {
 
@@ -28,36 +29,40 @@ public class CadastroActivity extends AppCompatActivity {
         confirmarSenhaEditText = findViewById(R.id.editTextConfirmarSenha);
         criarContaButton = findViewById(R.id.buttonCriarConta);
 
-        criarContaButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = emailEditText.getText().toString().trim();
-                String senha = senhaEditText.getText().toString();
-                String confirmarSenha = confirmarSenhaEditText.getText().toString();
+        criarContaButton.setOnClickListener(v -> {
+            String email = emailEditText.getText().toString().trim();
+            String senha = senhaEditText.getText().toString().trim();
+            String confirmarSenha = confirmarSenhaEditText.getText().toString().trim();
 
-                if (!isValidEmail(email)) {
-                    Toast.makeText(CadastroActivity.this, "Digite um email válido", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(senha)) {
-                    Toast.makeText(CadastroActivity.this, "Digite uma senha", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (!senha.equals(confirmarSenha)) {
-                    Toast.makeText(CadastroActivity.this, "As senhas não coincidem", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                // Aqui você pode salvar o usuário com DAO, Firebase, etc
-                Toast.makeText(CadastroActivity.this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
-
-                // Vai para tela de login
-                Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+            if (!isValidEmail(email)) {
+                Toast.makeText(this, "Digite um email válido", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            if (senha.length() < 6) {
+                Toast.makeText(this, "A senha deve ter no mínimo 6 caracteres", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (!senha.equals(confirmarSenha)) {
+                Toast.makeText(this, "As senhas não coincidem", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+
+            if (db.usuarioDao().emailJaCadastrado(email) > 0) {
+                Toast.makeText(this, "Este e-mail já está cadastrado", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Usuario novoUsuario = new Usuario(email, senha);
+            db.usuarioDao().inserirUsuario(novoUsuario);
+
+            Toast.makeText(this, "Conta criada com sucesso! Faça login para continuar.", Toast.LENGTH_LONG).show();
+
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
         });
     }
 

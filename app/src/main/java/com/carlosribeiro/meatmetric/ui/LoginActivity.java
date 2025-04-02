@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.carlosribeiro.meatmetric.R;
-import com.carlosribeiro.meatmetric.data.UsuarioDao;
+import com.carlosribeiro.meatmetric.db.AppDatabase;
 import com.carlosribeiro.meatmetric.model.Usuario;
 import com.carlosribeiro.meatmetric.ui.recuperar.RecuperarSenhaActivity;
 import com.carlosribeiro.meatmetric.util.SessaoManager;
@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
             String senha = senhaEditText.getText().toString().trim();
 
             if (!isValidEmail(email)) {
-                Toast.makeText(this, "Digite um email válido", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Digite um e-mail válido", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -47,11 +47,12 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            Usuario usuario = UsuarioDao.buscarUsuario(email, senha);
+            AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+            Usuario usuario = db.usuarioDao().buscarUsuario(email, senha);
+
             if (usuario != null) {
                 SessaoManager.salvarUsuarioLogado(this, email);
-                Intent intent = new Intent(LoginActivity.this, ParametrosActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(this, ParametrosActivity.class));
                 finish();
             } else {
                 Toast.makeText(this, "Usuário ou senha inválidos", Toast.LENGTH_SHORT).show();
@@ -59,8 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         esqueceuSenhaText.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, RecuperarSenhaActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, RecuperarSenhaActivity.class));
         });
     }
 

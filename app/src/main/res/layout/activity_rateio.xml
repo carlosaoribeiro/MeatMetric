@@ -12,43 +12,42 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <!-- Título -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
             android:text="Informe os dados do rateio"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/colorTextPrimary"
             android:layout_marginBottom="24dp" />
 
-        <!-- Valor Total -->
         <EditText
             android:id="@+id/editTextValorTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Valor total da compra"
             android:inputType="numberDecimal"
-            android:background="@drawable/bg_input"
-            android:padding="16dp"
+            android:background="@drawable/bg_edittext"
+            android:padding="12dp"
             android:textColor="@android:color/white"
             android:textColorHint="#AAAAAA"
             android:layout_marginBottom="16dp" />
 
-        <!-- Número de Pagantes -->
         <EditText
             android:id="@+id/editTextPagantes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Número de pagantes"
+            android:hint="Número de pessoas"
             android:inputType="number"
-            android:background="@drawable/bg_input"
+            android:maxLength="3"
+            android:background="@drawable/bg_edittext"
             android:padding="16dp"
             android:textColor="@android:color/white"
             android:textColorHint="#AAAAAA"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="24dp" />
 
-        <!-- Valor por pessoa -->
+
         <TextView
             android:id="@+id/textValorPorPessoa"
             android:layout_width="wrap_content"
@@ -58,39 +57,35 @@
             android:textSize="16sp"
             android:layout_marginBottom="24dp" />
 
-        <!-- Botão Anexar Ticket -->
-        <Button
-            android:id="@+id/buttonAnexarImagem"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Anexar Ticket da Compra"
-            android:backgroundTint="@color/colorPrimary"
-            android:textColor="@android:color/white"
-            android:textAllCaps="true"
-            android:textSize="16sp"
-            android:layout_marginBottom="12dp"
-            android:padding="12dp" />
-
-        <!-- Imagem Preview -->
+        <!-- Imagem preview -->
         <ImageView
             android:id="@+id/imagePreview"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginBottom="16dp"
+            android:visibility="gone"
             android:scaleType="centerCrop"
-            android:visibility="gone" />
+            android:background="@drawable/bg_card"
+            android:layout_marginBottom="16dp" />
 
-        <!-- Botão Compartilhar -->
         <Button
-            android:id="@+id/buttonCompartilharRateio"
-            android:layout_width="match_parent"
+            android:id="@+id/buttonAnexarImagem"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Compartilhar Rateio"
-            android:backgroundTint="@color/colorPrimary"
+            android:text="Anexar Ticket da Compra"
             android:textColor="@android:color/white"
-            android:textAllCaps="true"
-            android:textSize="16sp"
+            style="@style/MeatMetricButton"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_marginBottom="16dp"
             android:padding="12dp" />
 
+        <Button
+            android:id="@+id/buttonCompartilharRateio"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Compartilhar Rateio"
+            android:textColor="@android:color/white"
+            style="@style/MeatMetricButton"
+            android:backgroundTint="@color/colorPrimary"
+            android:padding="12dp" />
     </LinearLayout>
 </ScrollView>

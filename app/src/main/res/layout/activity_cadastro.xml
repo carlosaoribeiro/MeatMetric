@@ -22,7 +22,7 @@
             Crie sua conta"
             android:textColor="@color/colorTextPrimary"
             android:textSize="24sp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="80dp"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginBottom="32dp" />
@@ -67,7 +67,7 @@
 
         <Button
             android:id="@+id/buttonCriarConta"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="60dp"
             android:text="Criar Conta"
             style="@style/MeatMetricButton" />

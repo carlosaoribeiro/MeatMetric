@@ -1,7 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.MeatMetric" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <!-- Tema base com suporte ao modo escuro -->
+    <style name="Theme.MeatMetric" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Cores adaptáveis (definidas no colors.xml ou colors-night.xml) -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+
+
+        <!-- Cores de status bar e barra de navegação -->
+        <item name="android:statusBarColor" tools:targetApi="21">@color/colorPrimaryDark</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
     </style>
 </resources>
