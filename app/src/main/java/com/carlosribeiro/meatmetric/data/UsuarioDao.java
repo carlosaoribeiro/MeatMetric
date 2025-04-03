@@ -20,4 +20,8 @@ public interface UsuarioDao {
 
     @Query("UPDATE usuarios SET senha = :novaSenha WHERE email = :email")
     void atualizarSenha(String email, String novaSenha);
+
+    // ✅ Novo método: buscar o usuário apenas pelo e-mail
+    @Query("SELECT * FROM usuarios WHERE email = :email LIMIT 1")
+    Usuario buscarPorEmail(String email);
 }

@@ -35,7 +35,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             Executors.newSingleThreadExecutor().execute(() -> {
                                 // Inserção automática do usuário de teste
                                 UsuarioDao dao = INSTANCE.usuarioDao();
-                                dao.inserirUsuario(new Usuario("teste@meatmetric.com", "senha123"));
+                                dao.inserirUsuario(new Usuario("Usuário Teste","teste@meatmetric.com", "senha123"));
                             });
                         }
                     })

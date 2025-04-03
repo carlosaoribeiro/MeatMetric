@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
             Usuario usuario = db.usuarioDao().buscarUsuario(email, senha);
 
             if (usuario != null) {
-                SessaoManager.salvarUsuarioLogado(this, email);
+                SessaoManager.salvarDadosUsuario(this, email);
                 startActivity(new Intent(this, ParametrosActivity.class));
                 finish();
             } else {
