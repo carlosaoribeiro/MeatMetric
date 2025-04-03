@@ -32,30 +32,16 @@ public class PerfilActivity extends AppCompatActivity {
         buttonLogout = findViewById(R.id.buttonLogout);
 
         // Recupera dados da sessão
-        String email = SessaoManager.getUsuarioLogado(this);
         String nome = SessaoManager.getNomeUsuario(this);
-        String dataCriacao = SessaoManager.getDataCriacao(this);
+        String email = SessaoManager.getUsuarioLogado(this);
+        String dataCriacao = SessaoManager.getDataCriacaoFormatada(this);
 
-        // Define os textos na tela
-        if (nome != null) {
-            textNomeUsuario.setText("Nome: " + nome);
-        } else {
-            textNomeUsuario.setText("Nome não disponível");
-        }
+        // Aplica os dados
+        textNomeUsuario.setText(nome != null ? "👤 " + nome : "Nome não disponível");
+        textEmailUsuario.setText(email != null ? "📧 " + email : "Email não disponível");
+        textMembroDesde.setText(dataCriacao != null ? "📅 Membro desde: " + dataCriacao : "📅 Membro desde: --/--/----");
 
-        if (email != null) {
-            textEmailUsuario.setText(email);
-        } else {
-            textEmailUsuario.setText("Email não disponível");
-        }
-
-        if (dataCriacao != null) {
-            textMembroDesde.setText("Membro desde: " + dataCriacao);
-        } else {
-            textMembroDesde.setText("Membro desde: --/--/----");
-        }
-
-        // Botão de logout
+        // Logout
         buttonLogout.setOnClickListener(v -> {
             SessaoManager.logout(this);
             startActivity(new Intent(this, LoginActivity.class));

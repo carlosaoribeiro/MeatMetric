@@ -14,23 +14,36 @@
         android:paddingTop="48dp"
         android:paddingBottom="48dp">
 
+        <!-- Título -->
         <TextView
             android:id="@+id/textTituloCadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bem-vindo ao MeatMetric,
-            Crie sua conta"
+            android:text="Bem-vindo ao MeatMetric,\nCrie sua conta"
             android:textColor="@color/colorTextPrimary"
             android:textSize="24sp"
-            android:layout_marginTop="80dp"
             android:textStyle="bold"
             android:gravity="center"
+            android:layout_marginTop="80dp"
             android:layout_marginBottom="32dp" />
 
+        <!-- Nome -->
+        <EditText
+            android:id="@+id/editTextNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome completo"
+            android:inputType="textPersonName"
+            android:padding="16dp"
+            android:background="@drawable/bg_input"
+            android:textColor="@color/colorTextPrimary"
+            android:textColorHint="#AAAAAA"
+            android:layout_marginBottom="12dp" />
 
+        <!-- Email -->
         <EditText
             android:id="@+id/editTextEmailCadastro"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
             android:inputType="textEmailAddress"
@@ -40,9 +53,10 @@
             android:textColorHint="#AAAAAA"
             android:layout_marginBottom="16dp" />
 
+        <!-- Senha -->
         <EditText
             android:id="@+id/editTextSenhaCadastro"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Senha"
             android:inputType="textPassword"
@@ -50,11 +64,14 @@
             android:padding="16dp"
             android:textColor="@color/black"
             android:textColorHint="#AAAAAA"
+            android:drawableEnd="@drawable/ic_eye_closed"
+            android:drawablePadding="12dp"
             android:layout_marginBottom="24dp" />
 
+        <!-- Confirmar Senha -->
         <EditText
             android:id="@+id/editTextConfirmarSenha"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Confirmar senha"
             android:inputType="textPassword"
@@ -62,9 +79,11 @@
             android:padding="16dp"
             android:textColor="@color/black"
             android:textColorHint="#AAAAAA"
+            android:drawableEnd="@drawable/ic_eye_closed"
+            android:drawablePadding="12dp"
             android:layout_marginBottom="24dp" />
 
-
+        <!-- Botão Criar Conta -->
         <Button
             android:id="@+id/buttonCriarConta"
             android:layout_width="250dp"

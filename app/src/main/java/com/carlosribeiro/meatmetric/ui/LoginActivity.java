@@ -2,8 +2,10 @@ package com.carlosribeiro.meatmetric.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,7 +23,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText emailEditText, senhaEditText;
     private Button entrarButton;
-    private TextView esqueceuSenhaText;
+    private TextView esqueceuSenhaText, textCadastrar;
+
+    private boolean senhaVisivel = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,31 @@ public class LoginActivity extends AppCompatActivity {
         senhaEditText = findViewById(R.id.editTextSenha);
         entrarButton = findViewById(R.id.buttonEntrar);
         esqueceuSenhaText = findViewById(R.id.textEsqueceuSenha);
+        textCadastrar = findViewById(R.id.textCadastrar);
+
+        // 🔐 Alternar visibilidade da senha ao clicar no drawable (olhinho)
+        senhaEditText.setOnTouchListener((v, event) -> {
+            final int DRAWABLE_END = 2;
+
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getRawX() >= (senhaEditText.getRight() - senhaEditText.getCompoundDrawables()[DRAWABLE_END].getBounds().width())) {
+                    senhaVisivel = !senhaVisivel;
+
+                    if (senhaVisivel) {
+                        senhaEditText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                        senhaEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_open, 0);
+                    } else {
+                        senhaEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        senhaEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_closed, 0);
+                    }
+
+                    // Mantém o cursor no final
+                    senhaEditText.setSelection(senhaEditText.getText().length());
+                    return true;
+                }
+            }
+            return false;
+        });
 
         entrarButton.setOnClickListener(v -> {
             String email = emailEditText.getText().toString().trim();
@@ -51,7 +80,13 @@ public class LoginActivity extends AppCompatActivity {
             Usuario usuario = db.usuarioDao().buscarUsuario(email, senha);
 
             if (usuario != null) {
-                SessaoManager.salvarDadosUsuario(this, email);
+                SessaoManager.salvarUsuarioLogado(
+                        this,
+                        usuario.getNome(),
+                        usuario.getEmail(),
+                        usuario.getCreatedAt()
+                );
+
                 startActivity(new Intent(this, ParametrosActivity.class));
                 finish();
             } else {
@@ -61,6 +96,10 @@ public class LoginActivity extends AppCompatActivity {
 
         esqueceuSenhaText.setOnClickListener(v -> {
             startActivity(new Intent(this, RecuperarSenhaActivity.class));
+        });
+
+        textCadastrar.setOnClickListener(v -> {
+            startActivity(new Intent(this, CadastroActivity.class));
         });
     }
 

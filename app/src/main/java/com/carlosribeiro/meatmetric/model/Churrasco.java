@@ -13,17 +13,17 @@ public class Churrasco {
     private double bovino;
     private double frango;
     private double linguica;
-    private double porco;
+    private double suino;
 
     public Churrasco(TipoChurrasco tipo, int numeroPessoas, double totalCarneKg,
-                     double bovino, double frango, double linguica, double porco) {
+                     double bovino, double frango, double linguica, double suino) {
         this.tipo = tipo;
         this.numeroPessoas = numeroPessoas;
         this.totalCarneKg = totalCarneKg;
         this.bovino = bovino;
         this.frango = frango;
         this.linguica = linguica;
-        this.porco = porco;
+        this.suino = suino;
     }
 
     public TipoChurrasco getTipo() {
@@ -50,7 +50,8 @@ public class Churrasco {
         return linguica;
     }
 
-    public double getPorco() {
-        return porco;
+    public double getSuino() {
+        return suino;
     }
 }
+

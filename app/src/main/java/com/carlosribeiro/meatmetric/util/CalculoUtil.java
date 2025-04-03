@@ -13,8 +13,8 @@ public class CalculoUtil {
         double bovino = totalKg * 0.5;
         double frango = totalKg * 0.25;
         double linguica = totalKg * 0.15;
-        double porco = totalKg * 0.1;
+        double suino = totalKg * 0.1;
 
-        return new Churrasco(tipo, numeroPessoas, totalKg, bovino, frango, linguica, porco);
+        return new Churrasco(tipo, numeroPessoas, totalKg, bovino, frango, linguica, suino);
     }
 }

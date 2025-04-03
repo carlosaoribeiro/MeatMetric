@@ -69,7 +69,7 @@
 
         <Button
             android:id="@+id/buttonAnexarImagem"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Anexar Ticket da Compra"
             android:textColor="@android:color/white"
@@ -80,7 +80,7 @@
 
         <Button
             android:id="@+id/buttonCompartilharRateio"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Compartilhar Rateio"
             android:textColor="@android:color/white"

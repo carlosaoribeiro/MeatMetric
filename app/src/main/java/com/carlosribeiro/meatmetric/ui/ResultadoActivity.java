@@ -1,5 +1,6 @@
 package com.carlosribeiro.meatmetric.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -8,16 +9,15 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.carlosribeiro.meatmetric.R;
-import com.carlosribeiro.meatmetric.ui.ParametrosActivity;
-import com.carlosribeiro.meatmetric.ui.RateioActivity;
 
 public class ResultadoActivity extends AppCompatActivity {
 
-    private TextView textTotalKg, textBovino, textFrango, textLinguica, textPorco;
+    private TextView textTotalKg, textBovino, textFrango, textLinguica, textSuino;
     private Button buttonNovoCalculo, buttonCompartilhar, buttonRateio;
 
-    private double totalKg, bovino, frango, linguica, porco;
+    private double totalKg, bovino, frango, linguica, suino;
 
+    @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +28,7 @@ public class ResultadoActivity extends AppCompatActivity {
         textBovino = findViewById(R.id.textBovino);
         textFrango = findViewById(R.id.textFrango);
         textLinguica = findViewById(R.id.textLinguica);
-        textPorco = findViewById(R.id.textPorco);
+        textSuino = findViewById(R.id.textSuino);
         buttonNovoCalculo = findViewById(R.id.buttonNovoCalculo);
         buttonCompartilhar = findViewById(R.id.buttonCompartilhar);
         buttonRateio = findViewById(R.id.buttonRateio);
@@ -38,14 +38,14 @@ public class ResultadoActivity extends AppCompatActivity {
         bovino = getIntent().getDoubleExtra("bovino", 0.0);
         frango = getIntent().getDoubleExtra("frango", 0.0);
         linguica = getIntent().getDoubleExtra("linguica", 0.0);
-        porco = getIntent().getDoubleExtra("porco", 0.0);
+        suino = getIntent().getDoubleExtra("suíno", 0.0);
 
         // Exibe na tela
         textTotalKg.setText(String.format("Total: %.2f kg", totalKg));
         textBovino.setText(String.format("Bovino: %.2f kg", bovino));
         textFrango.setText(String.format("Frango: %.2f kg", frango));
         textLinguica.setText(String.format("Linguiça: %.2f kg", linguica));
-        textPorco.setText(String.format("Porco: %.2f kg", porco));
+        textSuino.setText(String.format("Suino: %.2f kg", suino));
 
         // Botão de novo cálculo
         buttonNovoCalculo.setOnClickListener(v -> {
@@ -61,10 +61,10 @@ public class ResultadoActivity extends AppCompatActivity {
                     "📊 Resultado do Planejamento:\n\n" +
                     "━━━━━━━━━━━━━━━━━━━\n" +
                     String.format("🔹 Total de carnes:     %.2f kg\n", totalKg) +
-                    String.format("🐄 Bovino:              %.2f kg\n", bovino) +
-                    String.format("🐔 Frango:              %.2f kg\n", frango) +
-                    String.format("🌭 Linguiça:            %.2f kg\n", linguica) +
-                    String.format("🐖 Porco:               %.2f kg\n", porco) +
+                    String.format("🐄 Bovino:               %.2f kg\n", bovino) +
+                    String.format("🐔 Frango:               %.2f kg\n", frango) +
+                    String.format("🌭 Linguiça:           %.2f kg\n", linguica) +
+                    String.format("🐖 Suino:                 %.2f kg\n", suino) +
                     "━━━━━━━━━━━━━━━━━━━\n\n" +
                     "✅ Evite desperdícios.\n" +
                     "✅ Calcule com inteligência.\n" +

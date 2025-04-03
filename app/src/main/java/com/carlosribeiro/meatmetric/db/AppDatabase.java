@@ -2,20 +2,18 @@ package com.carlosribeiro.meatmetric.db;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-
-import androidx.annotation.NonNull;
 import androidx.sqlite.db.SupportSQLiteDatabase;
+
+import com.carlosribeiro.meatmetric.data.UsuarioDao;
+import com.carlosribeiro.meatmetric.model.Usuario;
 
 import java.util.concurrent.Executors;
 
-
-import com.carlosribeiro.meatmetric.data.UsuarioDao; // ✅ Agora está certo!
-import com.carlosribeiro.meatmetric.model.Usuario;
-
-@Database(entities = {Usuario.class}, version = 1)
+@Database(entities = {Usuario.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
@@ -32,10 +30,18 @@ public abstract class AppDatabase extends RoomDatabase {
                         @Override
                         public void onCreate(@NonNull SupportSQLiteDatabase db) {
                             super.onCreate(db);
+
+                            // Usa a própria instância criada para inserir o usuário de teste
                             Executors.newSingleThreadExecutor().execute(() -> {
-                                // Inserção automática do usuário de teste
-                                UsuarioDao dao = INSTANCE.usuarioDao();
-                                dao.inserirUsuario(new Usuario("Usuário Teste","teste@meatmetric.com", "senha123"));
+                                AppDatabase dbInstance = INSTANCE;
+                                if (dbInstance != null) {
+                                    UsuarioDao dao = dbInstance.usuarioDao();
+                                    dao.inserirUsuario(new Usuario(
+                                            "Usuário Teste",
+                                            "teste@meatmetric.com",
+                                            "senha123"
+                                    ));
+                                }
                             });
                         }
                     })

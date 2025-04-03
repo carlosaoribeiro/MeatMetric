@@ -20,10 +20,8 @@ public class SplashActivity extends AppCompatActivity {
 
         new Handler().postDelayed(() -> {
             if (SessaoManager.isUsuarioLogado(SplashActivity.this)) {
-                // Vai direto para a tela principal
                 startActivity(new Intent(SplashActivity.this, ParametrosActivity.class));
             } else {
-                // Vai para login
                 startActivity(new Intent(SplashActivity.this, LoginActivity.class));
             }
             finish();

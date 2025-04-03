@@ -89,7 +89,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/textPorco"
+                    android:id="@+id/textSuino"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Suíno: 0.0 kg"

@@ -5,7 +5,9 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 @Entity(tableName = "usuarios")
 public class Usuario {
@@ -27,7 +29,7 @@ public class Usuario {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.createdAt = System.currentTimeMillis();
+        this.createdAt = System.currentTimeMillis(); // Marca o momento do cadastro
     }
 
     public String getEmail() {
@@ -60,5 +62,11 @@ public class Usuario {
 
     public void setCreatedAt(long createdAt) {
         this.createdAt = createdAt;
+    }
+
+    // 🔹 Retorna data de criação formatada como String legível
+    public String getDataCriacaoFormatada() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        return sdf.format(new Date(createdAt));
     }
 }

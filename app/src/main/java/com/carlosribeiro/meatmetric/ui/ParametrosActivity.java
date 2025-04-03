@@ -77,7 +77,7 @@ public class ParametrosActivity extends AppCompatActivity {
             intent.putExtra("bovino", churrasco.getBovino());
             intent.putExtra("frango", churrasco.getFrango());
             intent.putExtra("linguica", churrasco.getLinguica());
-            intent.putExtra("porco", churrasco.getPorco());
+            intent.putExtra("suíno", churrasco.getSuino());
             startActivity(intent);
         });
     }
