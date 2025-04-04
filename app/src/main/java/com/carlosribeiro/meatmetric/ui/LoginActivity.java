@@ -43,20 +43,24 @@ public class LoginActivity extends AppCompatActivity {
             final int DRAWABLE_END = 2;
 
             if (event.getAction() == MotionEvent.ACTION_UP) {
-                if (event.getRawX() >= (senhaEditText.getRight() - senhaEditText.getCompoundDrawables()[DRAWABLE_END].getBounds().width())) {
-                    senhaVisivel = !senhaVisivel;
+                // Verifica se o drawable (ícone) existe
+                if (senhaEditText.getCompoundDrawables()[DRAWABLE_END] != null) {
+                    int drawableWidth = senhaEditText.getCompoundDrawables()[DRAWABLE_END].getBounds().width();
+                    if (event.getRawX() >= (senhaEditText.getRight() - drawableWidth)) {
+                        senhaVisivel = !senhaVisivel;
 
-                    if (senhaVisivel) {
-                        senhaEditText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                        senhaEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_open, 0);
-                    } else {
-                        senhaEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                        senhaEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_closed, 0);
+                        if (senhaVisivel) {
+                            senhaEditText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            senhaEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_open, 0);
+                        } else {
+                            senhaEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            senhaEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_closed, 0);
+                        }
+
+                        // Mantém o cursor no final
+                        senhaEditText.setSelection(senhaEditText.getText().length());
+                        return true;
                     }
-
-                    // Mantém o cursor no final
-                    senhaEditText.setSelection(senhaEditText.getText().length());
-                    return true;
                 }
             }
             return false;
